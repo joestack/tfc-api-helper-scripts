@@ -274,7 +274,7 @@ do
             #check_tfc_token
             inject_var_into_varset $OPTARG
             ;;
-        0)
+        V)
             check_environment
             delete_varset $tfc_var_set
             create_varset $tfc_var_set
@@ -291,7 +291,7 @@ do
                     inject_var_into_varset $tfc_var_set,root_token,$token,terraform,false,false 
                 done
             ;;
-        1)
+        W)
             check_environment
             n=1
             cat /root/vault_init.txt | grep ^"Recovery Key " | awk -F: '{print $2}' |\
