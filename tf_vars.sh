@@ -246,7 +246,7 @@ inject_var_into_workspace() {
 
 #### MAIN ####
 
-while getopts "c:f:d:i:l" opt
+while getopts "c:f:d:i:lWV" opt
 do
     case $opt in
         c) 
