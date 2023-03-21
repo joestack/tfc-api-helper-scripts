@@ -224,7 +224,7 @@ inject_var_into_workspace() {
     echo $1 | while IFS=',' read -r workspace key value category hcl sensitive
     do
         #pit=`date +%s@%N`
-        inject_var_into_varset_api $workspace $key $value $category $hcl $sensitive
+        inject_var_into_workspace_api $workspace $key $value $category $hcl $sensitive
     done 
 }
 
@@ -297,13 +297,13 @@ do
             cat /root/vault_init.txt | grep ^"Recovery Key " | awk -F: '{print $2}' |\
                 while read key 
                 do 
-                    inject_var_into_workspace $organization,recovery_key_$n,$key,terraform,false,false
+                    inject_var_into_workspace $workspace,recovery_key_$n,$key,terraform,false,false
                     n=$(( $n +1 )) 
                 done
             cat /root/vault_init.txt | grep ^"Initial Root Token:" | awk -F: '{print $2}' |\
                 while read token
                 do
-                    inject_var_into_workspace $organization,root_token,$token,terraform,false,false 
+                    inject_var_into_workspace $workspace,root_token,$token,terraform,false,false 
                 done
             ;;  
     esac
