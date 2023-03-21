@@ -228,21 +228,21 @@ inject_var_into_workspace() {
     done 
 }
 
-check_environment
-delete_varset $tfc_var_set
-create_varset $tfc_var_set
-n=1 
-cat /root/vault_init.txt | grep ^"Recovery Key " | awk -F: '{print $2}' |\
-    while read key 
-    do 
-        inject_var_into_varset $tfc_var_set,recovery_key_$n,$key,terraform,false,false
-        n=$(( $n +1 )) 
-    done
-cat /root/vault_init.txt | grep ^"Initial Root Token:" | awk -F: '{print $2}' |\
-    while read token
-    do
-        inject_var_into_varset $tfc_var_set,root_token,$token,terraform,false,false 
-    done 
+# check_environment
+# delete_varset $tfc_var_set
+# create_varset $tfc_var_set
+# n=1 
+# cat /root/vault_init.txt | grep ^"Recovery Key " | awk -F: '{print $2}' |\
+#     while read key 
+#     do 
+#         inject_var_into_varset $tfc_var_set,recovery_key_$n,$key,terraform,false,false
+#         n=$(( $n +1 )) 
+#     done
+# cat /root/vault_init.txt | grep ^"Initial Root Token:" | awk -F: '{print $2}' |\
+#     while read token
+#     do
+#         inject_var_into_varset $tfc_var_set,root_token,$token,terraform,false,false 
+#     done 
 
 #### MAIN ####
 
